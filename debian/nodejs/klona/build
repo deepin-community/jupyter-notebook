@@ -1,0 +1,5 @@
+mkdir dist
+cp src/index.js dist/index.mjs
+cp src/index.js dist/index.js
+sed -i 's/export //' dist/index.js
+echo "\nexports.klona = klona;\n" >> dist/index.js

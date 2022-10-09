@@ -1,0 +1,5 @@
+mkdir dist lib
+# this is meant to be be browserified, but we're going to pass it
+# to webpack later, so hopefully it can manage instead...
+cp src/index.js dist/polyfill.js
+cp src/index.js lib/index.js

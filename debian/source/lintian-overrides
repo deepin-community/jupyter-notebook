@@ -1,0 +1,11 @@
+# these test files contain a base64-encoded trivial test image
+# (a 2x2 pixel black bitmap stored as jpeg and png)
+jupyter-notebook source: very-long-line-length-in-source-file notebook/tests/notebook/roundtrip.js line length is 745 characters (>512)
+jupyter-notebook source: source-contains-prebuilt-javascript-object notebook/tests/notebook/roundtrip.js line length is 745 characters (>512)
+jupyter-notebook source: source-is-missing notebook/tests/notebook/roundtrip.js line length is 745 characters (>512)
+
+# this is a big regex
+jupyter-notebook source: very-long-line-length-in-source-file notebook/static/bidi/numericshaping.js line length is 1087 characters (>512)
+jupyter-notebook source: source-contains-prebuilt-javascript-object notebook/static/bidi/numericshaping.js line length is 1083 characters (>512)
+jupyter-notebook source: source-is-missing notebook/static/bidi/numericshaping.js line length is 1083 characters (>512)
+
