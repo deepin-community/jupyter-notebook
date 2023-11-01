@@ -10,11 +10,9 @@ this.
  tools/build-main.js | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/tools/build-main.js b/tools/build-main.js
-index ba7bbdc..10a1b2c 100644
---- a/tools/build-main.js
-+++ b/tools/build-main.js
-@@ -55,6 +55,12 @@ var rjs_config = {
+--- jupyter-notebook.orig/tools/build-main.js
++++ jupyter-notebook/tools/build-main.js
+@@ -55,6 +55,12 @@
      "jquery-ui": {
        deps: ["jquery"],
      },

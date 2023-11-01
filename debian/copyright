@@ -1,4 +1,5 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: jupyter-notebook-deps
 
 Files: *
 Copyright: 2015-2016 Jupyter Development Team

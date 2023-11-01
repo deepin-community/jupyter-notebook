@@ -6,11 +6,9 @@ Subject: Call lessc with --source-map-basepath option for reproducibility
  setupbase.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/setupbase.py b/setupbase.py
-index 27ab16f..3a1ec20 100644
---- a/setupbase.py
-+++ b/setupbase.py
-@@ -483,7 +483,7 @@ class CompileCSS(Command):
+--- jupyter-notebook.orig/setupbase.py
++++ jupyter-notebook/setupbase.py
+@@ -484,7 +484,7 @@
          for src, dst in zip(self.sources, self.targets):
              try:
                  run(['lessc',

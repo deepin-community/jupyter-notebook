@@ -6,11 +6,9 @@ Subject: Elide sphinxcontrib_github_alt from documentation config
  docs/source/conf.py | 3 ---
  1 file changed, 3 deletions(-)
 
-diff --git a/docs/source/conf.py b/docs/source/conf.py
-index f0b8261..cb23a8a 100644
---- a/docs/source/conf.py
-+++ b/docs/source/conf.py
-@@ -70,10 +70,7 @@ extensions = [
+--- jupyter-notebook.orig/docs/source/conf.py
++++ jupyter-notebook/docs/source/conf.py
+@@ -70,10 +70,7 @@
      'sphinx.ext.intersphinx',
      'sphinx.ext.autosummary',
      'sphinx.ext.mathjax',

@@ -1,0 +1,52 @@
+From: Gordon Ball <gordon@chronitis.net>
+Date: Thu, 13 Jan 2022 08:23:10 +0000
+Subject: Update invocations of marked for markedjs 4
+
+---
+ notebook/static/base/js/markdown.js           | 2 +-
+ notebook/static/notebook/js/shortcuteditor.js | 4 ++--
+ notebook/static/tree/js/notebooklist.js       | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+--- jupyter-notebook.orig/notebook/static/base/js/markdown.js
++++ jupyter-notebook/notebook/static/base/js/markdown.js
+@@ -100,7 +100,7 @@
+             text = text_and_math[0];
+             math = text_and_math[1];
+         }
+-        marked(text, { renderer: renderer }, function (err, html) {
++        marked.parse(text, { renderer: renderer }, function (err, html) {
+             if(!err) {
+                 if(options.with_math) {
+                     html = mathjaxutils.replace_math(html, math);
+--- jupyter-notebook.orig/notebook/static/notebook/js/shortcuteditor.js
++++ jupyter-notebook/notebook/static/notebook/js/shortcuteditor.js
+@@ -106,7 +106,7 @@
+       });
+       children.unshift(React.createElement('div', {className:'well', key:'disclamer', id:'short-key-binding-intro', dangerouslySetInnerHTML:
+             {__html: 
+-            marked(
++            marked.parse(
+ 
+             "Here you can modify the keyboard shortcuts available in "+
+             "command mode. Your changes will be stored for later sessions. "+
+@@ -115,7 +115,7 @@
+       }));
+       children.push(React.createElement('div', {className:'well', key:'disclamer', id:'long-key-binding-intro', dangerouslySetInnerHTML:
+             {__html: 
+-            marked(
++            marked.parse(
+ 
+             "This dialog allows you to modify the keyboard shortcuts available in command mode. "+ 
+             "Any changes will be persisted between sessions and across environments. "+
+--- jupyter-notebook.orig/notebook/static/tree/js/notebooklist.js
++++ jupyter-notebook/notebook/static/tree/js/notebooklist.js
+@@ -542,7 +542,7 @@
+ 	span12.empty();
+ 	that.contents.get(list_item.path, {"content": true}).then(
+           function (data) {
+-	    span12.append($('<div style="margin:auto;text-align:center;color:grey"/>').innerHTML = marked(data.content));
++	    span12.append($('<div style="margin:auto;text-align:center;color:grey"/>').innerHTML = marked.parse(data.content));
+ 	  },
+           function(error) {
+             span12.append(i18n.msg._("Server error: ") + error.message);

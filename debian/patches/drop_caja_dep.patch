@@ -1,0 +1,15 @@
+Description: drop the dependency on google's caja
+Author: Julien Puydt
+Forwarded: no
+
+--- jupyter-notebook.orig/setupbase.py
++++ jupyter-notebook/setupbase.py
+@@ -135,7 +135,7 @@
+         pjoin(components, "bootstrap-tour", "build", "js", "bootstrap-tour.min.js"),
+         pjoin(components, "create-react-class", "index.js"),
+         pjoin(components, "font-awesome", "css", "*.css"),
+-        pjoin(components, "google-caja", "html-css-sanitizer-minified.js"),
++        #pjoin(components, "google-caja", "html-css-sanitizer-minified.js"),
+         pjoin(components, "es6-promise", "*.js"),
+         pjoin(components, "font-awesome", "fonts", "*.*"),
+         pjoin(components, "jed", "jed.js"),

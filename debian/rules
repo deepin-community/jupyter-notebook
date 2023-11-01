@@ -63,7 +63,7 @@ override_dh_auto_configure:
 
 	#marked
 	mkdir -p $(COMP)/marked/lib
-	ln -s $(JSBASE)/marked/marked.js $(COMP)/marked/lib/
+	ln -s $(JSBASE)/marked/marked.umd.js $(COMP)/marked/lib/marked.js
 
 	#mathjax
 	ln -s $(JSBASE)/mathjax $(COMP)/MathJax

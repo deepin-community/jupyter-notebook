@@ -6,11 +6,9 @@ Subject: Ignore errors in documentation notebooks during build
  docs/source/conf.py | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/docs/source/conf.py b/docs/source/conf.py
-index f359805..f0b8261 100644
---- a/docs/source/conf.py
-+++ b/docs/source/conf.py
-@@ -360,3 +360,4 @@ spelling_word_list_filename='spelling_wordlist.txt'
+--- jupyter-notebook.orig/docs/source/conf.py
++++ jupyter-notebook/docs/source/conf.py
+@@ -360,3 +360,4 @@
  
  # import before any doc is built, so _ is guaranteed to be injected
  import notebook.transutils

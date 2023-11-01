@@ -9,21 +9,18 @@ which probably doesn't actually break the subsequent tests).
  notebook/tests/test_serverextensions.py | 7 ++++---
  1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/notebook/tests/test_serverextensions.py b/notebook/tests/test_serverextensions.py
-index 35da80d..e0c9896 100644
---- a/notebook/tests/test_serverextensions.py
-+++ b/notebook/tests/test_serverextensions.py
-@@ -88,9 +88,10 @@ class MockEnvTestCase(TestCase):
+--- jupyter-notebook.orig/notebook/tests/test_serverextensions.py
++++ jupyter-notebook/notebook/tests/test_serverextensions.py
+@@ -93,9 +93,9 @@
              p.start()
              self.addCleanup(p.stop)
          # verify our patches
 -        self.assertEqual(paths.jupyter_config_path(), [self.config_dir] + self.system_config_path)
 -        self.assertEqual(extensions._get_config_dir(user=False), self.system_config_dir)
 -        self.assertEqual(paths.jupyter_path(), [self.data_dir] + self.system_path)
-+        # the exact logic tested here changed in jupyter-core 4.9, adding extra paths
-+        # self.assertEqual(paths.jupyter_config_path(), [self.config_dir] + self.system_config_path)
-+        # self.assertEqual(extensions._get_config_dir(user=False), self.system_config_dir)
-+        # self.assertEqual(paths.jupyter_path(), [self.data_dir] + self.system_path)
-     
++        #self.assertEqual(paths.jupyter_config_path(), [self.config_dir] + self.system_config_path)
++        #self.assertEqual(extensions._get_config_dir(user=False), self.system_config_dir)
++        #self.assertEqual(paths.jupyter_path(), [self.data_dir] + self.system_path)
+ 
      def tearDown(self):
          for modulename in self._mock_extensions:

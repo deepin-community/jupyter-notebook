@@ -19,7 +19,7 @@ if sys.version_info < (3, 6):
     pip_message = 'This may be due to an out of date pip. Make sure you have pip >= 9.0.1.'
     try:
         import pip
-        pip_version = tuple([int(x) for x in pip.__version__.split('.')[:3]])
+        pip_version = tuple(int(x) for x in pip.__version__.split('.')[:3])
         if pip_version < (9, 0, 1) :
             pip_message = 'Your pip version is out of date, please install pip >= 9.0.1. '\
             'pip {} detected.'.format(pip.__version__)
@@ -85,6 +85,7 @@ languages, sharing, and interactive widgets.
 Read `the documentation <https://jupyter-notebook.readthedocs.io>`_
 for more information.
     """,
+    long_description_content_type = 'text/markdown',
     version         = version,
     packages        = find_packages(),
     package_data    = find_package_data(),
@@ -102,10 +103,10 @@ for more information.
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9'
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
     zip_safe = False,
     install_requires = [
@@ -115,26 +116,27 @@ for more information.
         # but hopefully avoids incompatibilities with Tornado 5. April 2018
         'pyzmq>=17',
         'argon2-cffi',
-        'ipython_genutils',
         'traitlets>=4.2.1',
         'jupyter_core>=4.6.1',
         'jupyter_client>=5.3.4',
+        'ipython_genutils',
         'nbformat',
-        'nbconvert',
+        'nbconvert>=5',
+        'nest-asyncio>=1.5',
         'ipykernel', # bless IPython kernel for now
-        'Send2Trash>=1.5.0',
+        'Send2Trash>=1.8.0',
         'terminado>=0.8.3',
         'prometheus_client'
     ],
     extras_require = {
-        'test': ['pytest', 'coverage', 'requests',
+        'test': ['pytest', 'coverage', 'requests', 'testpath',
                  'nbval', 'selenium', 'pytest', 'pytest-cov'],
         'docs': ['sphinx', 'nbsphinx', 'sphinxcontrib_github_alt',
                  'sphinx_rtd_theme', 'myst-parser'],
         'test:sys_platform != "win32"': ['requests-unixsocket'],
         'json-logging': ['json-logging']
     },
-    python_requires = '>=3.6',
+    python_requires = '>=3.7',
     entry_points = {
         'console_scripts': [
             'jupyter-notebook = notebook.notebookapp:main',

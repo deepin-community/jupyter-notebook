@@ -19,3 +19,4 @@ ieee754
 base64-js
 regenerator-runtime
 core-js
+picocolors

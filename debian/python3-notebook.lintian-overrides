@@ -8,4 +8,4 @@ python3-notebook: package-contains-documentation-outside-usr-share-doc
 python3-notebook: image-file-in-usr-lib usr/lib/python3/dist-packages/notebook/static/base/images/logo.png
 
 # contains lots of cross-package links to javascript packages
-python3-notebook: breakout-link
+python3-notebook: ldconfig-escape
