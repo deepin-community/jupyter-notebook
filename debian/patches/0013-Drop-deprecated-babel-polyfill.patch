@@ -7,10 +7,8 @@ Subject: Drop deprecated babel-polyfill
  webpack.config.js |  2 +-
  2 files changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/.babelrc b/.babelrc
-index cea726b..bca4311 100644
---- a/.babelrc
-+++ b/.babelrc
+--- jupyter-notebook.orig/.babelrc
++++ jupyter-notebook/.babelrc
 @@ -1,3 +1,11 @@
 -{ 
 -  "presets": ["es2015"],
@@ -25,11 +23,9 @@ index cea726b..bca4311 100644
 +  ]
  }
 +
-diff --git a/webpack.config.js b/webpack.config.js
-index bdb252f..646125e 100644
---- a/webpack.config.js
-+++ b/webpack.config.js
-@@ -8,7 +8,7 @@ crypto.createHash = (algorithm) =>
+--- jupyter-notebook.orig/webpack.config.js
++++ jupyter-notebook/webpack.config.js
+@@ -8,7 +8,7 @@
    cryptoOrigCreateHash(algorithm == 'md4' ? 'sha256' : algorithm);
  
  module.exports = {

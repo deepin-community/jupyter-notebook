@@ -6,11 +6,9 @@ Subject: Work around https://github.com/less/less.js/pull/3002
  setupbase.py | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/setupbase.py b/setupbase.py
-index 3a1ec20..e859cc5 100644
---- a/setupbase.py
-+++ b/setupbase.py
-@@ -486,7 +486,7 @@ class CompileCSS(Command):
+--- jupyter-notebook.orig/setupbase.py
++++ jupyter-notebook/setupbase.py
+@@ -487,7 +487,7 @@
                      '--source-map', '--source-map-basepath='+os.path.dirname(__file__),
                      '--include-path=%s' % pipes.quote(static),
                      src,

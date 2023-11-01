@@ -42,5 +42,8 @@ module.exports = {
       amd: 'react'
     }
   },
+  optimization: {
+    minimize: false
+  },
   plugins: []
 };

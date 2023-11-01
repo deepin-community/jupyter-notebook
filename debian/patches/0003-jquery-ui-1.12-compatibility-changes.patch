@@ -7,10 +7,8 @@ Subject: jquery-ui 1.12 compatibility changes
  tools/build-main.js          | 1 -
  2 files changed, 2 deletions(-)
 
-diff --git a/notebook/templates/page.html b/notebook/templates/page.html
-index 2237319..30a1555 100644
---- a/notebook/templates/page.html
-+++ b/notebook/templates/page.html
+--- jupyter-notebook.orig/notebook/templates/page.html
++++ jupyter-notebook/notebook/templates/page.html
 @@ -72,7 +72,6 @@
              },
              "jquery-ui": {
@@ -19,11 +17,9 @@ index 2237319..30a1555 100644
              }
            },
            waitSeconds: 30,
-diff --git a/tools/build-main.js b/tools/build-main.js
-index 5171864..ba7bbdc 100644
---- a/tools/build-main.js
-+++ b/tools/build-main.js
-@@ -54,7 +54,6 @@ var rjs_config = {
+--- jupyter-notebook.orig/tools/build-main.js
++++ jupyter-notebook/tools/build-main.js
+@@ -54,7 +54,6 @@
      },
      "jquery-ui": {
        deps: ["jquery"],
