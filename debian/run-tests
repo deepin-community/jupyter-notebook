@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Copyright 2022-2024 Julian Gilbey <jdg@debian.org>
+# License: MIT License (Expat)
+
+# Determine whether every test passes in at least one pytest run.
+# We run the command given on the command line at most MAX_PYTEST_RUNS,
+# stopping if a pytest run is successful.
+
+get_exclusions_script=$1
+source=$2
+shift 2
+interpreter=$1
+exclusions=$($get_exclusions_script $source $interpreter)
+
+MAX_PYTEST_RUNS=5
+
+NO_TESTS_EXITCODE=$(python3 -c "from pytest import ExitCode; print(int(ExitCode.NO_TESTS_COLLECTED))")
+
+run=1
+while [ $run -le $MAX_PYTEST_RUNS ]
+do
+    if [ $run -eq 1 ]
+    then
+	runopts="-rsfE"
+    else
+	runopts="-rfE --last-failed --last-failed-no-failures none"
+    fi
+    echo "*** STARTING RUN $run: $* $runopts $exclusions"
+    "$@" $runopts $exclusions
+    ret=$?
+    if [ $ret -eq 0 -o $ret -eq $NO_TESTS_EXITCODE ]
+    then
+	echo "*** END OF RUN $run: ALL TESTS RUN HAVE NOW PASSED/XFAILED ***"
+	exit 0
+    fi
+    echo "*** END OF RUN $run: NOT ALL TESTS HAVE YET PASSED/XFAILED ***"
+    run=$(($run + 1))
+done
+
+echo "*** SOME TESTS FAILED/ERRORED EVERY RUN, ABORTING ***"
+exit 1

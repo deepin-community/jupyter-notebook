@@ -1,0 +1,47 @@
+From: Diane Trout <diane@ghic.org>
+Date: Mon, 18 Nov 2024 23:54:07 +0100
+Subject: assertDictContainsSubset was removed in Python 3.11
+
+Bug: https://github.com/jupyter/notebook/issues/6272
+
+The issue is still open on github, and so I tried the simplest
+implementation that replaces it.
+---
+ notebook/services/contents/tests/test_manager.py | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/notebook/services/contents/tests/test_manager.py b/notebook/services/contents/tests/test_manager.py
+index f5ccc8c..23289b1 100644
+--- a/notebook/services/contents/tests/test_manager.py
++++ b/notebook/services/contents/tests/test_manager.py
+@@ -532,18 +532,18 @@ class TestContentsManager(TestCase):
+         # Test with a regular file.
+         file_model_path = cm.new_untitled(path=sub_dir, ext='.txt')['path']
+         file_model = cm.get(file_model_path)
+-        self.assertDictContainsSubset(
+-            {
+-                'content': '',
+-                'format': 'text',
+-                'mimetype': 'text/plain',
+-                'name': 'untitled.txt',
+-                'path': 'foo/untitled.txt',
+-                'type': 'file',
+-                'writable': True,
+-            },
+-            file_model,
+-        )
++        expected = {
++            'content': '',
++            'format': 'text',
++            'mimetype': 'text/plain',
++            'name': 'untitled.txt',
++            'path': 'foo/untitled.txt',
++            'type': 'file',
++            'writable': True,
++        }
++        for k in expected:
++            self.assertIn(k, file_model)
++            self.assertEqual(expected[k], file_model[k])
+         self.assertIn('created', file_model)
+         self.assertIn('last_modified', file_model)
+ 

@@ -15,3 +15,5 @@
 0015-Update-invocations-of-marked-for-markedjs-4.patch
 0016-pager-drop-resizable.patch
 drop_caja_dep.patch
+0018-replace-assert-dict-contains-subset.patch
+0019-pipes-is-not-part-of-Python-3.13.patch

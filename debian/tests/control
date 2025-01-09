@@ -1,7 +1,3 @@
 Tests: pytest
-Depends: python3-pytest, python3-requests, python3-requests-unixsocket, @
+Depends: python3-all, python3-pytest, python3-requests, python3-requests-unixsocket, @
 Restrictions: allow-stderr
-
-Test-Command: find /usr/lib/python3/dist-packages/notebook -xtype l >&2
-Depends: @
-Restrictions: superficial

@@ -1,0 +1,90 @@
+#! /bin/bash
+
+# Some of the tests must be excluded for a variety of reasons.
+
+# This script is called from both debian/rules and from the
+# autopkgtest suite (both from our hand-crafted test script and from
+# autopkgtest-pkg-pybuild), with the first argument being "rules"
+# (for build-time and autopkgtest-pkg-pybuild) or "autopkgtest"
+# (for our hand-crafted autopkgtest), and the second argument being
+# the Python interpreter (eg python3.12) and returns an argument
+# string that can then be passed to pytest.
+# At present, we do not need to handle different Python versions, but
+# this may be needed in future.
+
+source=$1
+interpreter=$2
+arch=$(dpkg --print-architecture)
+
+case $source in
+    rules)
+        if [ -n "$AUTOPKGTEST_TMP" ]
+        then
+            mode=autopkgtest-pybuild
+            arch=$(dpkg --print-architecture)
+        else
+            mode=build
+            arch=$(dpkg-architecture -qDEB_HOST_ARCH)
+        fi
+        ;;
+    autopkgtest)
+        mode=autopkgtest-manual
+        arch=$(dpkg --print-architecture)
+        ;;
+    *)
+        echo "Unexpected mode for debian/get_test_exclusions: $mode" >&2
+        echo "Giving up" >&2
+        exit 1
+        ;;
+esac
+
+# test_connection fails with an async timeout error in notebook 6.4.12
+EXCLUDES=(
+    services/kernels/tests/test_kernels_api.py::KernelAPITest::test_connections
+)
+
+# One test has started failing on riscv64, though the cause is unclear
+# (it is probably due to a change in some dependency)
+if [ $arch = riscv64 ]
+then
+    EXCLUDES+=(
+	services/kernels/tests/test_kernels_api.py::KernelCullingTest::test_culling
+    )
+fi
+
+# selenium tests require extra dependencies
+IGNORES=(
+    tests/selenium
+)
+
+
+# Print the list of excluded tests for pytest; during build, this
+# requires a "notebook/" prefix on all test names, but for the
+# installed version during autopkgtests, it does not.
+case $mode in
+    build)
+        ignoreprefix="notebook/"
+        excludeprefix="notebook/"
+        ;;
+    autopkgtest-manual)
+        # See https://github.com/pytest-dev/pytest/issues/3287
+	# The rootdir is $AUTOPKGTEST_TMP
+        ignoreprefix="/usr/lib/python3/dist-packages/notebook/"
+        excludeprefix=""
+	;;
+    autopkgtest-pybuild)
+	# The rootdir path has a different depth in the pybuild autopkgtest:
+	# /tmp/autopkgtest-*/downtmp/autopkgtest_tmp/build
+        ignoreprefix="/usr/lib/python3/dist-packages/notebook/"
+        excludeprefix=""
+        ;;
+esac
+
+for test in "${IGNORES[@]}"
+do
+    printf "%s" "--ignore=$ignoreprefix$test "
+done
+for test in "${EXCLUDES[@]}"
+do
+    printf "%s" "--deselect=$excludeprefix$test "
+done

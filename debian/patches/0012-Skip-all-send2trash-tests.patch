@@ -10,9 +10,11 @@ with different build and CI environments.
  notebook/services/contents/tests/test_manager.py      | 4 ++++
  2 files changed, 9 insertions(+)
 
---- jupyter-notebook.orig/notebook/services/contents/tests/test_contents_api.py
-+++ jupyter-notebook/notebook/services/contents/tests/test_contents_api.py
-@@ -10,6 +10,7 @@
+diff --git a/notebook/services/contents/tests/test_contents_api.py b/notebook/services/contents/tests/test_contents_api.py
+index e0a37aa..f0427cd 100644
+--- a/notebook/services/contents/tests/test_contents_api.py
++++ b/notebook/services/contents/tests/test_contents_api.py
+@@ -10,6 +10,7 @@ from unicodedata import normalize
  
  pjoin = os.path.join
  
@@ -20,7 +22,7 @@ with different build and CI environments.
  import requests
  from send2trash import send2trash
  from send2trash.exceptions import TrashPermissionError
-@@ -588,6 +589,7 @@
+@@ -588,6 +589,7 @@ class APITest(NotebookTestBase):
          with assert_http_error(400):
              resp = self.api.copy('å b', 'foo')
  
@@ -28,7 +30,7 @@ with different build and CI environments.
      def test_delete(self):
          for d, name in self.dirs_nbs:
              print(f'{d!r}, {name!r}')
-@@ -601,6 +603,7 @@
+@@ -601,6 +603,7 @@ class APITest(NotebookTestBase):
              print(nbs)
              self.assertEqual(nbs, [])
  
@@ -36,7 +38,7 @@ with different build and CI environments.
      def test_delete_dirs(self):
          # depth-first delete everything, so we don't try to delete empty directories
          for name in sorted(self.dirs + ['/'], key=len, reverse=True):
-@@ -610,6 +613,7 @@
+@@ -610,6 +613,7 @@ class APITest(NotebookTestBase):
          listing = self.api.list('/').json()['content']
          self.assertEqual(listing, [])
  
@@ -44,7 +46,7 @@ with different build and CI environments.
      def test_delete_non_empty_dir(self):
          if sys.platform == 'win32':
              self.skipTest("Disabled deleting non-empty dirs on Windows")
-@@ -675,6 +679,7 @@
+@@ -675,6 +679,7 @@ class APITest(NotebookTestBase):
          with assert_http_error(400):
              resp = self.api.rename('old.txt', '.hidden.txt')
  
@@ -52,9 +54,11 @@ with different build and CI environments.
      def test_checkpoints_follow_file(self):
  
          # Read initial file state
---- jupyter-notebook.orig/notebook/services/contents/tests/test_manager.py
-+++ jupyter-notebook/notebook/services/contents/tests/test_manager.py
-@@ -6,6 +6,7 @@
+diff --git a/notebook/services/contents/tests/test_manager.py b/notebook/services/contents/tests/test_manager.py
+index efb3d1a..f5ccc8c 100644
+--- a/notebook/services/contents/tests/test_manager.py
++++ b/notebook/services/contents/tests/test_manager.py
+@@ -6,6 +6,7 @@ import time
  from contextlib import contextmanager
  from itertools import combinations
  
@@ -62,7 +66,7 @@ with different build and CI environments.
  from tornado.web import HTTPError
  from unittest import TestCase, skipIf
  from tempfile import NamedTemporaryFile
-@@ -359,6 +360,7 @@
+@@ -328,6 +329,7 @@ class TestFileContentsManager(TestCase):
                  else:
                      self.fail("Should have raised HTTPError(404)")
  
@@ -70,7 +74,7 @@ with different build and CI environments.
      def test_escape_root(self):
          with TemporaryDirectory() as td:
              cm = FileContentsManager(root_dir=td)
-@@ -684,6 +686,7 @@
+@@ -653,6 +655,7 @@ class TestContentsManager(TestCase):
          self.assertEqual(model['name'], 'Untitled.ipynb')
          self.assertEqual(model['path'], 'foo/Untitled.ipynb')
  
@@ -78,7 +82,7 @@ with different build and CI environments.
      def test_delete(self):
          cm = self.contents_manager
          # Create a notebook
-@@ -752,6 +755,7 @@
+@@ -721,6 +724,7 @@ class TestContentsManager(TestCase):
          # Created a notebook in the renamed directory should work
          cm.new_untitled("foo/bar_diff", ext=".ipynb")
  

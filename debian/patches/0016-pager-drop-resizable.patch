@@ -9,9 +9,11 @@ element not being resizable by mouse.
  notebook/static/notebook/js/pager.js | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- jupyter-notebook.orig/notebook/static/notebook/js/pager.js
-+++ jupyter-notebook/notebook/static/notebook/js/pager.js
-@@ -23,7 +23,7 @@
+diff --git a/notebook/static/notebook/js/pager.js b/notebook/static/notebook/js/pager.js
+index 488c887..c7ad59d 100644
+--- a/notebook/static/notebook/js/pager.js
++++ b/notebook/static/notebook/js/pager.js
+@@ -23,7 +23,7 @@ define([
          this.pager_element = $(pager_selector);
          this.pager_button_area = $('#pager-button-area');
          this._default_end_space = 100;

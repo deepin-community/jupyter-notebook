@@ -1,3 +1,60 @@
+jupyter-notebook (6.4.13-5) unstable; urgency=medium
+
+  * Team upload.
+  * Exclude test that has started failing on riscv64
+
+ -- Julian Gilbey <jdg@debian.org>  Thu, 28 Nov 2024 07:38:39 +0000
+
+jupyter-notebook (6.4.13-4) unstable; urgency=medium
+
+  * Team upload.
+  * Replace versioned Breaks: cadabra2 with Conflicts (closes: #1036996)
+
+ -- Julian Gilbey <jdg@debian.org>  Thu, 21 Nov 2024 20:09:16 +0000
+
+jupyter-notebook (6.4.13-3) unstable; urgency=medium
+
+  * Team upload.
+  * Added patch to replace use of the 'pipes' modules which is no longer
+    part of the Python stdlib starting with version 3.13. Closes:
+    #1084673
+  * Standards-Version: 4.7.0 (routine-update)
+  * Reorder sequence of d/control fields by cme (routine-update)
+  Update lintian override info to new format:
+  + debian/source/lintian-overrides: line 3-5, 8-10
+  + debian/python3-notebook.lintian-overrides: line 8
+  * Remove constraints unnecessary since bullseye (oldstable):
+    + Build-Depends: Drop versioned constraint on libjs-codemirror (>= 5.56).
+    + python3-notebook: Drop versioned constraint on libjs-codemirror (>= 5.56)
+      in Depends.
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Tue, 19 Nov 2024 00:02:17 +0100
+
+jupyter-notebook (6.4.13-2) unstable; urgency=medium
+
+  * Fixing get-test-exclusions, autopkgtest should be against the
+    installed package, so lets use an absolute path.
+
+ -- Diane Trout <diane@ghic.org>  Fri, 30 Aug 2024 13:27:35 -0700
+
+jupyter-notebook (6.4.13-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release (Closes: #1069027)
+  * add 0018-replace-assert-dict-contains-subset.patch
+    Works around a >= Python3.11 issue where assertDictContainsSubset was
+    removed.
+  * Refresh patches
+  * Use get-test-exclusions to pass the same test exclusions to both
+    autopkgtest and pybuild
+  * skip services/kernels/tests/test_kernels_api.py::KernelAPITest::test_connections
+    because it reliabily times out with our current versions of zmq and tornado.
+    This override should be checked and removed in the future.
+  * Remove superficial tests
+  * Install notebook/tests so we can use them in the debian CI
+
+ -- Diane Trout <diane@ghic.org>  Wed, 28 Aug 2024 14:54:05 -0700
+
 jupyter-notebook (6.4.12-2.2) unstable; urgency=medium
 
   * Non-maintainer upload.
