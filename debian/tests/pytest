@@ -5,4 +5,12 @@ export HOME=$AUTOPKGTEST_TMP/home
 mkdir -p $XDG_RUNTIME_DIR $HOME
 chmod 0700 $XDG_RUNTIME_DIR
 
-python3 -m pytest --ignore=notebook/tests/selenium
+DEBIAN_DIR=$(pwd)/debian
+
+for py in $(py3versions -s)
+do
+    cd "$AUTOPKGTEST_TMP"
+    echo "Testing with $py"
+    $DEBIAN_DIR/run-tests $DEBIAN_DIR/get-test-exclusions autopkgtest $py \
+      -m pytest $PYTEST_OPTIONS --pyargs notebook
+done

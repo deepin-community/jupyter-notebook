@@ -8,9 +8,11 @@ Subject: Update invocations of marked for markedjs 4
  notebook/static/tree/js/notebooklist.js       | 2 +-
  3 files changed, 4 insertions(+), 4 deletions(-)
 
---- jupyter-notebook.orig/notebook/static/base/js/markdown.js
-+++ jupyter-notebook/notebook/static/base/js/markdown.js
-@@ -100,7 +100,7 @@
+diff --git a/notebook/static/base/js/markdown.js b/notebook/static/base/js/markdown.js
+index 492ac37..ece8d16 100644
+--- a/notebook/static/base/js/markdown.js
++++ b/notebook/static/base/js/markdown.js
+@@ -100,7 +100,7 @@ define([
              text = text_and_math[0];
              math = text_and_math[1];
          }
@@ -19,9 +21,11 @@ Subject: Update invocations of marked for markedjs 4
              if(!err) {
                  if(options.with_math) {
                      html = mathjaxutils.replace_math(html, math);
---- jupyter-notebook.orig/notebook/static/notebook/js/shortcuteditor.js
-+++ jupyter-notebook/notebook/static/notebook/js/shortcuteditor.js
-@@ -106,7 +106,7 @@
+diff --git a/notebook/static/notebook/js/shortcuteditor.js b/notebook/static/notebook/js/shortcuteditor.js
+index 3fa76cd..9084c5f 100644
+--- a/notebook/static/notebook/js/shortcuteditor.js
++++ b/notebook/static/notebook/js/shortcuteditor.js
+@@ -106,7 +106,7 @@ var KeyBindingList = createReactClass({
        });
        children.unshift(React.createElement('div', {className:'well', key:'disclamer', id:'short-key-binding-intro', dangerouslySetInnerHTML:
              {__html: 
@@ -30,7 +34,7 @@ Subject: Update invocations of marked for markedjs 4
  
              "Here you can modify the keyboard shortcuts available in "+
              "command mode. Your changes will be stored for later sessions. "+
-@@ -115,7 +115,7 @@
+@@ -115,7 +115,7 @@ var KeyBindingList = createReactClass({
        }));
        children.push(React.createElement('div', {className:'well', key:'disclamer', id:'long-key-binding-intro', dangerouslySetInnerHTML:
              {__html: 
@@ -39,9 +43,11 @@ Subject: Update invocations of marked for markedjs 4
  
              "This dialog allows you to modify the keyboard shortcuts available in command mode. "+ 
              "Any changes will be persisted between sessions and across environments. "+
---- jupyter-notebook.orig/notebook/static/tree/js/notebooklist.js
-+++ jupyter-notebook/notebook/static/tree/js/notebooklist.js
-@@ -542,7 +542,7 @@
+diff --git a/notebook/static/tree/js/notebooklist.js b/notebook/static/tree/js/notebooklist.js
+index 3f1f96a..e5a2520 100644
+--- a/notebook/static/tree/js/notebooklist.js
++++ b/notebook/static/tree/js/notebooklist.js
+@@ -542,7 +542,7 @@ define([
  	span12.empty();
  	that.contents.get(list_item.path, {"content": true}).then(
            function (data) {

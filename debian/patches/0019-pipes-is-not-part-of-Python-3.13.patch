@@ -1,0 +1,39 @@
+From: "Michael R. Crusoe" <crusoe@debian.org>
+Date: Mon, 18 Nov 2024 23:58:17 +0100
+Subject: pipes is not part of Python 3.13
+
+---
+ setupbase.py | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/setupbase.py b/setupbase.py
+index 7b32769..ea569f2 100644
+--- a/setupbase.py
++++ b/setupbase.py
+@@ -12,7 +12,7 @@ This includes:
+ 
+ import os
+ import re
+-import pipes
++import shlex
+ import shutil
+ import sys
+ 
+@@ -27,7 +27,7 @@ if sys.platform == 'win32':
+     from subprocess import list2cmdline
+ else:
+     def list2cmdline(cmd_list):
+-        return ' '.join(map(pipes.quote, cmd_list))
++        return ' '.join(map(shlex.quote, cmd_list))
+ 
+ #-------------------------------------------------------------------------------
+ # Useful globals and utility functions
+@@ -485,7 +485,7 @@ class CompileCSS(Command):
+             try:
+                 run(['lessc',
+                     '--source-map', '--source-map-basepath='+os.path.dirname(__file__),
+-                    '--include-path=%s' % pipes.quote(static),
++                    '--include-path=%s' % shlex.quote(static),
+                     src,
+                     os.path.relpath(dst, repo_root),
+                 ], cwd=repo_root, env=env)

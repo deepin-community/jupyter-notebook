@@ -8,12 +8,14 @@ file, so we can't modify the system copy.
 
 TODO: Find an alternative way of implementing this fix.
 ---
- setupbase.py | 2 --
- 1 file changed, 2 deletions(-)
+ setupbase.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---- jupyter-notebook.orig/setupbase.py
-+++ jupyter-notebook/setupbase.py
-@@ -479,7 +479,7 @@
+diff --git a/setupbase.py b/setupbase.py
+index 354e7e7..e217bcf 100644
+--- a/setupbase.py
++++ b/setupbase.py
+@@ -479,7 +479,7 @@ class CompileCSS(Command):
          env = os.environ.copy()
          env['PATH'] = npm_path
  

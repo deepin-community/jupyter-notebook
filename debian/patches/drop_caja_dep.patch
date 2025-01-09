@@ -1,10 +1,17 @@
-Description: drop the dependency on google's caja
-Author: Julien Puydt
-Forwarded: no
+From: Julien Puydt <jpuydt@debian.org>
+Date: Thu, 11 Aug 2022 11:43:24 +0200
+Subject: drop the dependency on google's caja
 
---- jupyter-notebook.orig/setupbase.py
-+++ jupyter-notebook/setupbase.py
-@@ -135,7 +135,7 @@
+Forwarded: no
+---
+ setupbase.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setupbase.py b/setupbase.py
+index e217bcf..7b32769 100644
+--- a/setupbase.py
++++ b/setupbase.py
+@@ -135,7 +135,7 @@ def find_package_data():
          pjoin(components, "bootstrap-tour", "build", "js", "bootstrap-tour.min.js"),
          pjoin(components, "create-react-class", "index.js"),
          pjoin(components, "font-awesome", "css", "*.css"),
